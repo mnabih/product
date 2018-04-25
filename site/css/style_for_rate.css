@@ -1,0 +1,93 @@
+
+
+/*App Rating*/
+.ratingApp {
+    display: inline-block;
+}
+
+.ratingApp input {
+    position: absolute;
+    opacity: 0;
+    margin: 0;
+}
+
+.ratingApp label {
+    float: left;
+    padding: 0 1px;
+    font-size: 18px;
+    color: #bbb;
+    margin: 0;
+}
+
+.ratingApp input:hover ~ label, .ratingApp input:checked ~ label {
+    color: #2196f3;
+}
+
+/*Rating News*/
+.ratingNews {
+    display: inline-block;
+}
+
+.ratingNews input {
+    position: absolute;
+    opacity: 0;
+    margin: 0;
+}
+
+.ratingNews label {
+    float: left;
+    padding: 0 1px;
+    font-size: 18px;
+    color: #bbb;
+    margin: 0;
+}
+
+.ratingNews input:hover ~ label, .ratingNews input:checked ~ label {
+    color: #2196f3;
+}
+
+/*Rating Product*/
+.ratingProduct {
+    display: inline-block;
+}
+
+.ratingProduct input {
+    position: absolute;
+    opacity: 0;
+    margin: 0;
+}
+
+.ratingProduct label {
+    float: left;
+    padding: 0 1px;
+    font-size: 18px;
+    color: #bbb;
+    margin: 0;
+}
+
+.ratingProduct input:hover ~ label, .ratingProduct input:checked ~ label {
+    color: #2196f3;
+}
+
+/*Rating User*/
+.ratingUser {
+    display: inline-block;
+}
+
+.ratingUser input {
+    position: absolute;
+    opacity: 0;
+    margin: 0;
+}
+
+.ratingUser label {
+    float: left;
+    padding: 0 1px;
+    font-size: 18px;
+    color: #bbb;
+    margin: 0;
+}
+
+.ratingUser input:hover ~ label, .ratingUser input:checked ~ label {
+    color: #2196f3;
+}

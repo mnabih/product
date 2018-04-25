@@ -1,0 +1,380 @@
+/*Smat Phone And Tablet*/
+
+@media(max-width:767px) {
+
+    /* Start Navbar */
+
+    .navbar-inverse .control .btn {
+        margin: 0 auto;
+        display: block;
+    }
+
+    .navbar-inverse .form {
+        top: 0;
+        right: -90px;
+        left: 0;
+    }
+
+        .navbar-inverse .form input {
+            padding-right: 50px;
+        }
+
+    .navbar-inverse .navbar-toggle {
+        border: 0;
+        border-radius: 2px;
+        transition: all .5s ease-in-out;
+    }
+
+        .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
+            background: rgba(49, 55, 77, 0.8);
+            background: -webkit-linear-gradient(to right, rgba(49, 55, 77, 0.8), rgba(148, 54, 41, 0.8));
+            background: linear-gradient(to right, rgba(49, 55, 77, 0.8), rgba(148, 54, 41, 0.8));
+            transition: all .5s ease-in-out;
+        }
+
+    .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+        border: 0;
+        /*box-shadow: 0 0 0;*/
+        overflow: initial;
+        background: rgba(49, 55, 77, 0.4);
+        background: -webkit-linear-gradient(to right, rgba(49, 55, 77, 0.4), rgba(148, 54, 41, 0.4));
+        background: linear-gradient(to right, rgba(49, 55, 77, 0.4), rgba(148, 54, 41, 0.4));
+        min-height: 370px;
+        max-height: 370px;
+    }
+
+    .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+        background-color: transparent;
+        transition: all .5s ease-in-out;
+    }
+
+    .navbar-nav {
+        float: none;
+    }
+
+    .nav>li {
+        position: relative;
+        display: block;
+        width: 60%;
+        margin: 0 auto;
+    }
+
+    .navbar-inverse .navbar-nav > li > a {
+        padding: 0 20px;
+        text-align: center;
+    }
+
+    .slider .carousel,
+    .slider .carousel .item,
+    .carousel-inner > .item > img,
+    .carousel-inner > .item > a > img {
+        min-height: 435px;
+        max-height: 435px;
+    }
+
+    .Location .slider,
+    .reservation .slider,
+    .Halls .slider {
+
+    }
+
+    .navbar-inverse .navbar-brand > img {
+        top: 0;
+    }
+
+    /* End Navbar */
+
+    /* Start Slider */
+
+    .slider .carousel-caption {
+        text-align: right;
+        width: 100%;
+        right: 5%;
+        left: 45%;
+        bottom: 30px;
+    }
+
+    /* End Slider */
+
+    .contact .container {
+        width: 100%;
+    }
+
+    .contact .twasl {
+        padding: 30px 20px;
+    }
+
+    .contact h2:before,
+    .contact h2:after {
+        display: none;
+    }
+
+    /* Start About */
+
+    .about p {
+        border: 2px dashed #963628;
+        padding: 20px 10px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+    }
+
+    .halls .text {
+        padding: 20px 40px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+        border: 2px dashed #fff;
+        border-radius: 5px;
+    }
+
+    .halls img {
+        margin: 20px 0;
+    }
+
+    .contact .twasl ul li {
+        margin: 0 8px;
+    }
+
+    footer .foot p.left,
+    footer .foot p,
+    footer .footer .col-xs-12 {
+        text-align: center;
+    }
+
+    /* End About */
+
+    .ui-datepicker .ui-datepicker-header {
+        position: relative;
+        top: 0;
+        right: 0;
+        transform: rotate(0);
+        margin-bottom: 25px;
+    }
+
+    h2:before,
+    h2:after {
+        display: none;
+    }
+
+    .reservation .add {
+        padding-top: 80px;
+    }
+
+    .reservation .cost span {
+        right: 78%;
+    }
+
+    .halls .text p {
+        padding-left: 0;
+    }
+
+    .ui-datepicker table {
+        position: relative;
+        left: 30px;
+    }
+}
+/*Small Screen*/
+
+@media(min-width:768px) and (max-width:991px) {
+
+    .navbar-inverse .control .btn {
+        padding-right: 10px;
+        padding-left: 0;
+    }
+
+    .navbar-inverse .navbar-nav > li > a {
+        padding-right: 8px;
+        padding-left: 8px;
+    }
+
+    .navbar-inverse .form {
+        top: 350%;
+        right: 0;
+        left: 650px;
+    }
+
+        .navbar-inverse .form input {
+            padding-right: 50px;
+        }
+
+    .slider .carousel-caption {
+        text-align: right;
+        width: 60%;
+        right: 8%;
+        left: 0;
+        top: 80px;
+    }
+
+    .slider .carousel,
+    .slider .carousel .item,
+    .carousel-inner > .item > img,
+    .carousel-inner > .item > a > img {
+        min-height: initial;
+        max-height: initial;
+    }
+
+    .about img {
+        display: none;
+    }
+
+    .about p {
+        border: 2px dashed #963628;
+        padding: 20px 10px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+    }
+
+    .halls .text {
+        padding: 20px 40px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+        border: 2px dashed #fff;
+        border-radius: 5px;
+    }
+
+    .halls .hall2 {
+        display: none;
+    }
+
+    .halls img {
+        margin: 0 auto;
+    }
+
+    .Halls .services .btn {
+        width: 50%;
+    }
+
+    .contact .twasl ul li {
+        margin: 0 20px;
+    }
+
+    footer .foot p.left,
+    footer .foot p,
+    footer .footer .col-xs-12 {
+        text-align: center;
+    }
+
+    .ui-datepicker .ui-datepicker-header {
+        position: relative;
+        top: 0;
+        right: 0;
+        transform: rotate(0);
+        margin-bottom: 25px;
+    }
+
+    .reservation .add {
+        padding-top: 80px;
+    }
+
+    .reservation .cost span {
+        right: 64%;
+    }
+
+    .add1 input[type=radio]:checked + label > span > span,
+    .add2 input[type=radio]:checked + label > span > span {
+        margin: 1.5px 0.135em;
+    }
+
+    .reservation .cost .form input,
+    .reservation .cost .btn {
+        width: 50%;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .reservation .cost .form .fa {
+        right: 27%;
+    }
+}
+/*Medium Screen*/
+
+@media(min-width:992px)and (max-width:1199px) {
+
+    .navbar-inverse .navbar-nav > li > a {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .navbar-inverse .form {
+        top: 350%;
+        right: 0;
+        left: 750px;
+    }
+
+        .navbar-inverse .form input {
+            padding-right: 50px;
+        }
+
+    .slider .carousel-caption {
+        text-align: right;
+        width: 60%;
+        right: 8%;
+        left: 0;
+        top: 130px;
+    }
+
+    .slider .carousel,
+    .slider .carousel .item,
+    .carousel-inner > .item > img,
+    .carousel-inner > .item > a > img {
+        min-height: initial;
+        max-height: initial;
+    }
+
+    .about p {
+        margin-bottom: 20px;
+    }
+
+    .halls .text {
+        padding: 20px 40px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+
+    .halls img {
+        margin: 0 auto;
+    }
+
+    .halls .square1 {
+        top: 216px;
+    }
+
+    .halls .square2 {
+        top: 385px;
+    }
+
+    .Halls .services .btn {
+        width: 100%;
+    }
+
+    .contact .twasl ul li {
+        margin: 0 10px;
+    }
+
+    footer .footer .subscribe {
+        width: 50%;
+        display: block;
+        margin: 0 auto;
+    }
+
+    footer .footer .col-xs-12 {
+        text-align: center;
+    }
+
+    footer .footer .col-md-4 {
+        text-align: right;
+    }
+
+    .reservation .add {
+        padding-top: 80px;
+    }
+
+    .reservation .cost span {
+        right: 61%;
+    }
+
+    .add1 input[type=radio]:checked + label > span > span,
+    .add2 input[type=radio]:checked + label > span > span {
+        margin: 1.5px 0.135em;
+    }
+}
+/*Larger Screen*/
