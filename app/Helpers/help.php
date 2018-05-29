@@ -65,7 +65,75 @@ function save_img($base64_img, $img_name, $path)
 	}  
 }
 	
+
+
+#report
+function Report($user_id,$event)
+{
+	$report = new Report;
+	$user = User::findOrFail($user_id);
+    if($user->role > 0)
+    {
+        $report->user_id = $user->id;
+        $report->event   = 'قام '.$user->name .' '.$event;
+        $report->supervisor = 1;
+        $report->save();
+    }else
+    {
+        $report->user_id = $user->id;
+        $report->event   = 'قام '.$user->name .' '.$event;
+        $report->supervisor = 0;
+        $report->save();
+    }
+
+}
+
+#current route
+function currentRoute()
+{
+    $routes = Route::getRoutes();
+    foreach ($routes as $value)
+    {
+        if($value->getName() === Route::currentRouteName()) 
+        {
+            echo $value->getAction()['title'] ;
+        }
+    }
+}
+
+#email colors
+function EmailColors()
+{
+    $html = Html::select('email_header_color','email_footer_color','email_font_color')->first();
+    return $html;
+}
+
+function convert2english($string) {
+    $newNumbers = range(0, 9);
+    $arabic = array('٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩');
+    $string =  str_replace($arabic, $newNumbers, $string);
+    return $string;
+}
+
+function is_unique($key,$value){
+    $user                = User::where($key , $value)->first();
+    if(  $user   )
+    {
+        return 1;
+    }
+}
+function generate_code() {
+    $characters = '0123456789';
+    $charactersLength = strlen($characters);
+    $token = '';
+    $length = 6;
+    for ($i = 0; $i < $length; $i++) {
+        $token .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $token;
+}
 #mobily
+
 function send_mobile_sms($numbers, $msg) {
     include(app_path() . '/Mobily/includeSettings.php');
     $chrArray[0] = "،";
@@ -375,12 +443,11 @@ function send_mobile_sms($numbers, $msg) {
         if(in_array(mb_substr($msg,$i,1,'UTF-8'), $chrArray))
             $strResult.= $unicodeArray[array_search(mb_substr($msg,$i,1,'UTF-8'), $chrArray)];
     }
+    $mobile = "966550007652";
+    $password = "asd555asd";
+    $sender = "AAIT.SA";
 
-    $database = SmsEmailNotification::first();
 
-    $mobile   = $database->sms_number;
-    $password = $database->sms_password;
-    $sender   = $database->sms_sender_name;
     $MsgID = rand(1, 99999);
     $first_val = substr($numbers, 0, 1);
     if ($first_val == "0") {
@@ -405,45 +472,9 @@ function send_mobile_sms($numbers, $msg) {
         return false;
     }
 }
-
-#report
-function Report($user_id,$event)
-{
-	$report = new Report;
-	$user = User::findOrFail($user_id);
-    if($user->role > 0)
-    {
-        $report->user_id = $user->id;
-        $report->event   = 'قام '.$user->name .' '.$event;
-        $report->supervisor = 1;
-        $report->save();
-    }else
-    {
-        $report->user_id = $user->id;
-        $report->event   = 'قام '.$user->name .' '.$event;
-        $report->supervisor = 0;
-        $report->save();
-    }
-
+function upload_img($base64_img ,$path) {
+    $file     = base64_decode($base64_img);
+    $safeName = str_random(10) . '.' . 'png';
+    file_put_contents($path . $safeName, $file);
+    return $safeName;
 }
-
-#current route
-function currentRoute()
-{
-    $routes = Route::getRoutes();
-    foreach ($routes as $value)
-    {
-        if($value->getName() === Route::currentRouteName()) 
-        {
-            echo $value->getAction()['title'] ;
-        }
-    }
-}
-
-#email colors
-function EmailColors()
-{
-    $html = Html::select('email_header_color','email_footer_color','email_font_color')->first();
-    return $html;
-}
-

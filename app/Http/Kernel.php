@@ -61,5 +61,6 @@ class Kernel extends HttpKernel
         'Domain' => \App\Http\Middleware\Domain::class,
         'UserAuth' => \App\Http\Middleware\UserAuth::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'mobile' => \App\Http\Middleware\MobileUserMiddleware::class,
     ];
 }
