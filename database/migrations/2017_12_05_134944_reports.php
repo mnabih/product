@@ -15,7 +15,7 @@ class Reports extends Migration
     {
         Schema::create('report', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('event',500);
+            $table->string('event',500)->nullable();
             $table->integer('supervisor');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

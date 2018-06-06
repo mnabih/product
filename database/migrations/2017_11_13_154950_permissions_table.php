@@ -24,6 +24,7 @@ class PermissionsTable extends Migration
 
         $permission = 
         [
+            'dashboard',
             'permissionslist',
             'addpermissionspage',
             'addpermission',
