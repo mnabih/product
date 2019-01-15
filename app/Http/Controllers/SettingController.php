@@ -31,7 +31,7 @@ class SettingController extends Controller
     #setting page
     public function Setting()
     {
-    	return view('dashboard.setting.setting');
+        return view('dashboard.setting.setting');
     }
 
     #add social media
@@ -52,7 +52,10 @@ class SettingController extends Controller
         $social->logo = $logo_name;
         if($social->save())
         {
-            Image::make($logo)->save('dashboard/uploads/socialicon/'.$logo_name);
+            //Image::make($logo)->save('public/dashboard/uploads/socialicon/'.$logo_name);
+
+            $logo->move('public/dashboard/uploads/socialicon/', $logo_name);
+
             Session::flash('success','تم الحفظ');
             return back();
         }
@@ -74,10 +77,12 @@ class SettingController extends Controller
         if(!empty($request->edit_logo))
         {
             $logo = $request->edit_logo;
-            File::delete('dashboard/uploads/socialicon/'.$social->logo);
+            $logo_name = date('d-m-y').time().rand().'.'.$logo->getClientOriginalExtension();
+            File::delete('public/dashboard/uploads/socialicon/'.$social->logo);
             if($social->save())
             {
-                Image::make($logo)->save('dashboard/uploads/socialicon/'.$social->logo);
+                //Image::make($logo)->save('public/dashboard/uploads/socialicon/'.$social->logo);
+                $logo->move('public/dashboard/uploads/socialicon/', $logo_name);
                 Session::flash('success','تم حفظ التعديلات');
                 return back();
             }
@@ -91,7 +96,7 @@ class SettingController extends Controller
     public function DeleteSocial(Request $request)
     {
         $social = Social::findOrFail($request->id);
-        File::delete('dashboard/uploads/socialicon/'.$social->logo);
+        File::delete('public/dashboard/uploads/socialicon/'.$social->logo);
         $social->delete();
         Session::flash('success','تم الحذف بنجاح');
         return back();
@@ -181,10 +186,14 @@ class SettingController extends Controller
         $this->validate($request,[
             'site_name' =>'nullable|min:1|max:190',
             'logo'      =>'nullable|image',
+            'site_phone'=>'nullable|numeric|digits:10',
+            'charge'    =>'nullable|numeric|min:0',
         ]);
 
         $SiteSetting = SiteSetting::first();
         $SiteSetting->site_name = $request->site_name;
+        $SiteSetting->site_phone = $request->site_phone;
+        $SiteSetting->charge = $request->charge;
 
         if(!empty($request->logo))
         {

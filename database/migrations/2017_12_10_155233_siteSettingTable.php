@@ -20,7 +20,9 @@ class SiteSettingTable extends Migration
             $table->string('site_logo')->nullable();
             $table->longText('site_description')->nullable();
             $table->longText('site_tagged')->nullable();
+            $table->string('site_phone')->nullable();
             $table->longText('site_copyrigth')->nullable();
+            $table->integer('charge')->nullable();
             $table->timestamps();
         });
 

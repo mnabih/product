@@ -25,7 +25,7 @@
 				<div class="tabbable">
 					<ul class="nav nav-tabs">
 						<!-- users reports -->
-						<li class="active"><a href="#basic-tab1" data-toggle="tab">تقارير الاعضاء</a></li>
+						{{--<li class="active"><a href="#basic-tab1" data-toggle="tab">تقارير الاعضاء</a></li>--}}
 						<!-- supervisors reports  -->
 						<li><a href="#basic-tab2" data-toggle="tab">تقارير المشرفين</a></li>
 					</ul>
@@ -52,7 +52,7 @@
 											<td>
 												<div class="media-left media-middle">
 													<span class="btn bg-teal-400 btn-rounded btn-icon btn-xs">
-														<img class="img-circle" src="{{asset('dashboard/uploads/users/'.$r->User->avatar)}}">
+														<img class="img-circle" src="{{asset('public/dashboard/uploads/users/'.$r->User->avatar)}}">
 													</span>
 												</div>
 

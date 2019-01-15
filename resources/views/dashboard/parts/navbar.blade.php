@@ -19,11 +19,11 @@
 		<ul class="nav navbar-nav navbar-right">
 
 			<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-					<i class="icon-bubbles4"></i>
-					<span class="visible-xs-inline-block position-right">Messages</span>
-					<span class="badge bg-warning-400">{{count(Notification())}}</span>
-				</a>
+				{{--<a href="#" class="dropdown-toggle" data-toggle="dropdown">--}}
+					{{--<i class="icon-bubbles4"></i>--}}
+					{{--<span class="visible-xs-inline-block position-right">Messages</span>--}}
+					{{--<span class="badge bg-warning-400">{{count(Notification())}}</span>--}}
+				{{--</a>--}}
 				
 				<div class="dropdown-menu dropdown-content width-350" style="width: 250px">
 

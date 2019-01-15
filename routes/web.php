@@ -9,7 +9,8 @@ Route::get('/',function(){
 
 /*---------------------------------End Of FrontEnd--------------------------*/
 
-
+#get country cities
+Route::get('country/{country}/cities', 'UsersController@getCities');
 
 /*---------------------------------Start Of DashBoard--------------------------*/
 
@@ -22,6 +23,238 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','Manager','checkRole','smt
 		'title' =>'الرئيسيه'
 		]);
 
+
+	/*--------------------------------- Start Of new product work  mnm-------------------------------*/
+
+    /*------------ start Of countries and cities  ----------*/
+
+    #countries list
+    Route::get('countries',[
+        'uses' =>'CountriesController@countries',
+        'as'   =>'countries',
+        'title'=>'الدول',
+        'icon' =>'<i class="fa fa-globe"></i>',
+        'child'=>[
+            'addCountry',
+            'updateCountry',
+            'deleteCountry',
+        ]
+    ]);
+
+    #add
+    Route::post('addCountry',[
+        'uses' =>'CountriesController@addCountry',
+        'as'   =>'addCountry',
+        'title'=>'اضافة دولة'
+    ]);
+
+    #update
+    Route::post('updateCountry',[
+        'uses' =>'CountriesController@updateCountry',
+        'as'   =>'updateCountry',
+        'title'=>'تحديث دولة'
+    ]);
+
+    #delete
+    Route::post('deleteCountry',[
+        'uses' =>'CountriesController@deleteCountry',
+        'as'   =>'deleteCountry',
+        'title'=>'حذف دولة'
+    ]);
+
+
+    /* ------ cities -----*/
+
+
+    #cities list
+    Route::get('cities',[
+        'uses' =>'CitiesController@cities',
+        'as'   =>'cities',
+        'title'=>'المدن',
+        'icon' =>'<i class="fa fa-location-arrow"></i>',
+        'child'=>[
+            'addCity',
+            'updateCity',
+            'deleteCity',
+        ]
+    ]);
+
+    #add
+    Route::post('addCity',[
+        'uses' =>'CitiesController@addCity',
+        'as'   =>'addCity',
+        'title'=>'اضافة مدينة'
+    ]);
+
+    #update
+    Route::post('updateCity',[
+        'uses' =>'CitiesController@updateCity',
+        'as'   =>'updateCity',
+        'title'=>'تحديث مدينة'
+    ]);
+
+    #delete
+    Route::post('deleteCity',[
+        'uses' =>'CitiesController@deleteCity',
+        'as'   =>'deleteCity',
+        'title'=>'حذف مدينة'
+    ]);
+
+    /*------------ start Of countries and cities  ----------*/
+    /*------------ start Of product  ----------*/
+
+    /* ------ types -----*/
+    #types list
+    Route::get('types',[
+        'uses' =>'TypesController@types',
+        'as'   =>'types',
+        'title'=>'الانواع الرئيسية',
+        'icon' =>'<i class="fa fa-th-large"></i>',
+        'child'=>[
+            'addType',
+            'updateType',
+            'deleteType',
+        ]
+    ]);
+
+    #add
+    Route::post('addType',[
+        'uses' =>'TypesController@addType',
+        'as'   =>'addType',
+        'title'=>'اضافة نوع رئيسي'
+    ]);
+
+    #update
+    Route::post('updateType',[
+        'uses' =>'TypesController@updateType',
+        'as'   =>'updateType',
+        'title'=>'تحديث نوع رئيسي'
+    ]);
+
+    #delete
+    Route::post('deleteType',[
+        'uses' =>'TypesController@deleteType',
+        'as'   =>'deleteType',
+        'title'=>'حذف نوع رئيسي'
+    ]);
+
+
+
+
+    /* ------ product -----*/
+    # products list
+    Route::get('products',[
+        'uses' =>'ProductsController@products',
+        'as'   =>'products',
+        'title'=>'المنتجات',
+        'icon' =>'<i class="fa fa-th"></i>',
+        'child'=>[
+            'addProduct',
+            'updateProduct',
+            'deleteProduct',
+            'addOffer',
+            'addImage',
+            'deleteImage',
+            'images'
+
+
+        ]
+    ]);
+
+    #add
+    Route::post('addProduct',[
+        'uses' =>'ProductsController@addProduct',
+        'as'   =>'addProduct',
+        'title'=>'اضافة منتج رئيسي'
+    ]);
+
+    #update
+    Route::post('updateProduct',[
+        'uses' =>'ProductsController@updateProduct',
+        'as'   =>'updateProduct',
+        'title'=>'تحديث منتج رئيسي'
+    ]);
+
+    #delete
+    Route::post('deleteProduct',[
+        'uses' =>'ProductsController@deleteProduct',
+        'as'   =>'deleteProduct',
+        'title'=>'حذف منتج رئيسي'
+    ]);
+
+
+
+    # add offer and delete old
+    Route::post('addOffer',[
+        'uses' =>'ProductsController@addOffer',
+        'as'   =>'addOffer',
+        'title'=>' اضافة عرض لمنتج'
+    ]);
+
+
+
+
+    # product images
+    Route::get('images/{id?}',[
+        'uses' =>'ImagesController@images',
+        'as'   =>'images',
+        'title'=>'عرض الصور '
+    ]);
+
+    #add
+    Route::post('addImage',[
+        'uses' =>'ImagesController@addImage',
+        'as'   =>'addImage',
+        'title'=>'اضافة  صورة '
+    ]);
+
+
+    #delete
+    Route::post('deleteImage',[
+        'uses' =>'ImagesController@deleteImage',
+        'as'   =>'deleteImage',
+        'title'=>'حذف صورة '
+    ]);
+
+
+
+
+
+
+    /*------------ end Of product  ----------*/
+
+    /*------------ start Of orders  ----------*/
+
+    # orders list
+    Route::get('orders/{id?}',[
+        'uses' =>'OrdersController@orders',
+        'as'   =>'orders',
+        'title'=>'الطلبات',
+        'icon' =>'<i class="fa fa-shopping-basket"></i>',
+        'child'=>[
+            'showOrder',
+            'deleteOrder'
+        ]
+    ]);
+
+    #show order details
+    Route::get('showOrder/{id}',[
+        'uses'=>'OrdersController@showOrder',
+        'as'  =>'showOrder',
+        'title'=>'عرض تفاصل طلب'
+    ]);
+
+    #delete
+    Route::post('deleteOrder',[
+        'uses' =>'OrdersController@deleteOrder',
+        'as'   =>'deleteOrder',
+        'title'=>'الغاء طلب '
+    ]);
+
+
+    /*------------ end Of orders  ----------*/
+
+	/*--------------------------------- end Of new product work  mnm--------------------------------*/
 
 	/*------------ Start Of ContactUsController ----------*/
 
@@ -64,7 +297,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','Manager','checkRole','smt
 
 	/*------------ End Of ContactUsController ----------*/
 
-	/*------------ End Of UsersController ----------*/
+	/*------------ start Of UsersController ----------*/
 
 	#users list
 	Route::get('users',[
@@ -81,7 +314,8 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','Manager','checkRole','smt
 			'notificationallusers',
 			'sendcurrentemail',
 			'sendcurrentsms',
-			'sendcurrentnotification'
+			'sendcurrentnotification',
+            'orderUser'
 		]
 	]);
 
@@ -105,6 +339,13 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','Manager','checkRole','smt
 		'as'   =>'deleteuser',
 		'title'=>'حذف عضو'
 	]);
+
+    #show user orders
+    Route::post('order-user',[
+        'uses' =>'UsersController@orderUser',
+        'as'   =>'orderUser',
+        'title'=>'عرض الطلبات'
+    ]);
 
 	#email for all users
 	Route::post('email-users',[
@@ -271,7 +512,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','Manager','checkRole','smt
 		'child'=>[
 			'addsocials',
 			'updatesocials',
-			'dddd',
+			'deletesocial',
 			'updatesmtp',
 			'updatesms',
 			'updateonesignal',
@@ -303,7 +544,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','Manager','checkRole','smt
 	Route::post('delete-social',[
 		'uses' =>'SettingController@DeleteSocial',
 		'as'   =>'deletesocial',
-		'title'=>'حذف مواقع التاوصل'
+		'title'=>'حذف مواقع التواصل'
 	]);
 
 	#update SMTP

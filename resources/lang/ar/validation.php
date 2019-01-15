@@ -164,7 +164,7 @@ return [
 		'about'=>'نبذه عن المدير ',
 		'photo' =>'الصوره',
 		'edit_name'=>'الاسم',
-		'edit_phone'=>'لاهاتف',
+		'edit_phone'=>'الهاتف',
 		'edit_about'=>'نبذه عن المدير',
 		'edit_photo'=>'الصوره',
 

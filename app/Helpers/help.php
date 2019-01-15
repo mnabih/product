@@ -3,23 +3,71 @@
 use Illuminate\Support\Facades\Route;
 use App\User;
 use App\Role;
+use App\Order;
+use App\Orderdetail;
+use App\Type;
 use App\Html;
 use App\Contact;
 use App\SmsEmailNotification;
 use App\Permission;
 use App\Report;
+use App\Product;
+use Carbon\Carbon;
 
 function Home()
 {
-	
+    
     $colors = ['#1abc9c','#2ecc71','#3498db','#9b59b6','#7FB3D5','#e67e22','#229954','#f39c12','#F6CD61','#FE8A71','#199EC7','#C39BD3'];
     $home =[
         [
-        'name'=>'الاعضاء',
+        'name'=>'اجمالى الاعضاء',
         'count'=>User::count() -1,
-        'icon'=>'<i class="icon-vcard"></i>',
+        'icon'=>'<i class="fa fa-users"></i>',
         'color'=>$colors[array_rand($colors)]
         ],
+        [
+            'name'=>'العملاء',
+            'count'=>User::where('is_provider', 0)->count() -1,
+            'icon'=>'<i class="icon-vcard"></i>',
+            'color'=>$colors[array_rand($colors)]
+        ],
+        [
+            'name'=>'المندوبين',
+            'count'=>User::where('is_provider', 1)->count(),
+            'icon'=>'<i class="fa fa-id-badge"></i>',
+            'color'=>$colors[array_rand($colors)]
+        ],
+        [
+            'name'=>'اجمالى الطلبات',
+            'count'=>Order::count(),
+            'icon'=>'<i class="fa fa-shopping-basket"></i>',
+            'color'=>$colors[array_rand($colors)]
+        ],
+        [
+            'name'=>'الطلبات المنتهية',
+            'count'=>Order::where('finish',1)->count(),
+            'icon'=>'<i class="fa fa-hourglass-end"></i>',
+            'color'=>$colors[array_rand($colors)]
+        ],
+        [
+            'name'=>'الطلبات المتعلقة',
+            'count'=>Order::where('finish',0)->count(),
+            'icon'=>'<i class="fa fa-hourglass-start"></i>',
+            'color'=>$colors[array_rand($colors)]
+        ],
+        [
+            'name'=>'الانواع الرئيسية',
+            'count'=>Type::count(),
+            'icon'=>'<i class="fa fa-th-large"></i>',
+            'color'=>$colors[array_rand($colors)]
+        ],
+        [
+            'name'=>'المنتجات ',
+            'count'=>Product::count(),
+            'icon'=>'<i class="fa fa-th"></i>',
+            'color'=>$colors[array_rand($colors)]
+        ],
+
     ];
 
     return $blocks[]=$home; 
@@ -29,7 +77,7 @@ function Home()
 function Role()
 {
     $role = Role::findOrFail(Auth::user()->role);
-    if(count($role) > 0)
+    if($role)
     {
         return $role->role;
     }else{
@@ -37,41 +85,83 @@ function Role()
     }
 }
 
+# has offer and active
+function hasActiveOffer($product)
+{
+    if($product and count($product->offers) > 0){
+
+        foreach ($product->offers as $product->offer) {
+
+            if (Carbon::now()->startOfDay()
+                ->between(Carbon::parse($product->offer->start_date)->startOfDay(),
+                 Carbon::parse($product->offer->end_date)->startOfDay())){
+
+                 $offerPercentatge = $product->offer->percentage;
+
+            }else{
+                $offerPercentatge = "";
+            }
+        }
+    }else{
+     $offerPercentatge = ""; 
+    }
+
+    return $offerPercentatge;
+            
+}
+
+# update has_offer
+function updateHasOffer(){
+    $products = Product::get();
+    foreach($products as $product){                    
+        if(hasActiveOffer($product) != ""){
+            $p = Product::find($product->id);
+            $p->has_offer =1;
+            $p->save();
+        }else{
+            $p = Product::find($product->id);
+            $p->has_offer = 0;
+            $p->save();
+        }
+    }
+    return "";
+}
+
 #messages notification
 function Notification()
 {
-	$messages = Contact::where('showOrNow',0)->latest()->get(); 
-	return $messages;
+    $messages = Contact::where('showOrNow',0)->latest()->get(); 
+    return $messages;
 }
 
 #upload image base64
 function save_img($base64_img, $img_name, $path)
 {
-	$full_path = $_SERVER['DOCUMENT_ROOT'].'/'.$path;
-	$image_data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $base64_img));
-	$image_data;
-	$source = imagecreatefromstring($image_data);
-	$angle = 0;
-	$rotate = imagerotate($source, $angle, 0); // if want to rotate the image
-	$imageName = $img_name . '.png';
-	$path_new = $full_path . '/' . $imageName;
-	$imageSave = imagejpeg($rotate, $path_new, 100);
-	if($imageSave)
-	{
-	    return true;
-	}else
-	{
-	    return false;
-	}  
+    $full_path = $_SERVER['DOCUMENT_ROOT'].'/'.$path;
+    $image_data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $base64_img));
+    $image_data;
+    $source = imagecreatefromstring($image_data);
+    $angle = 0;
+    $rotate = imagerotate($source, $angle, 0); // if want to rotate the image
+    $imageName = $img_name . '.png';
+    $path_new = $full_path . '/' . $imageName;
+    $imageSave = imagejpeg($rotate, $path_new, 100);
+    if($imageSave)
+    {
+        return true;
+    }else
+    {
+        return false;
+    }  
 }
-	
+    
 
 
 #report
 function Report($user_id,$event)
 {
-	$report = new Report;
-	$user = User::findOrFail($user_id);
+    $report = new Report;
+    $user = User::findOrFail($user_id);
     if($user->role > 0)
     {
         $report->user_id = $user->id;

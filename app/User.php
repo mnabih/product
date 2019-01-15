@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','phone','mobile','code','device_id',
+        'name', 'email', 'password','phone','mobile','code','device_id','country_id','city_id','is_provider','lat','lng','active'
     ];
 
     /**
@@ -35,6 +35,16 @@ class User extends Authenticatable
     public function Reports()
     {
         return $this->hasMany('App\Report','user_id','id');
+    }
+
+    public function city()
+    {
+        return $this->hasOne('App\City','id','city_id');
+    }
+
+    public function country()
+    {
+        return $this->hasOne('App\Country','id','country_id');
     }
 
     

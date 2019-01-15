@@ -31,15 +31,15 @@
 						<!-- social media -->
 						<li><a href="#basic-tab2" data-toggle="tab">مواقع التواصل</a></li>
 						<!-- email and sms -->
-						<li><a href="#basic-tab3" data-toggle="tab">الرسائل و الايميل</a></li>
+						{{--<li><a href="#basic-tab3" data-toggle="tab">الرسائل و الايميل</a></li>--}}
 						<!-- copyright -->
 						<li><a href="#basic-tab4" data-toggle="tab">حقوق الموقع </a></li>
 						<!-- email template -->
-						<li><a href="#basic-tab5" data-toggle="tab">قالب الايميل  </a></li>
+						{{--<li><a href="#basic-tab5" data-toggle="tab">قالب الايميل  </a></li>--}}
 						<!-- notification -->
-						<li><a href="#basic-tab6" data-toggle="tab">الاشعارات </a></li>
+						{{--<li><a href="#basic-tab6" data-toggle="tab">الاشعارات </a></li>--}}
 						<!-- api -->
-						<li><a href="#basic-tab7" data-toggle="tab">API </a></li>
+						{{--<li><a href="#basic-tab7" data-toggle="tab">API </a></li>--}}
 					</ul>
 
 					<div class="tab-content">
@@ -54,7 +54,7 @@
 												<h5 class="panel-title">اعدادات عامه </h5>
 												<div class="heading-elements">
 													<ul class="icons-list">
-								                		<li><a data-action="collapse"></a></li>
+								                		{{--<li><a data-action="collapse"></a></li>--}}
 								                		<li><a data-action="reload"></a></li>
 								                	</ul>
 							                	</div>
@@ -75,6 +75,20 @@
 														<div class="col-lg-6">
 															<img src="{{asset('dashboard/uploads/setting/site_logo/'.$SiteSetting->site_logo)}}" title="اختيار لوجو" onclick="sitelogo()" style="height: 210px; width: 210px;cursor: pointer;border-radius:100%">
 															<input type="file" name="logo" id="hidden">
+														</div>
+													</div>
+
+													<div class="form-group">
+														<label class="col-lg-3 control-label">جوال الموقع :</label>
+														<div class="col-lg-4">
+															<input type="text" value="{{$SiteSetting->site_phone}}" name="site_phone" class="form-control" placeholder="جوال الموقع"><span></span>
+														</div>
+													</div>
+
+													<div class="form-group">
+														<label class="col-lg-3 control-label">قيمة الشحن :</label>
+														<div class="col-lg-4">
+															<input type="text" value="{{$SiteSetting->charge}}" name="charge" class="form-control" placeholder="قيمة الشحن"><span></span>
 														</div>
 													</div>
 
@@ -102,23 +116,23 @@
 											<form action="{{route('updateseo')}}" method="post" class="form-horizontal">
 												{{csrf_field()}}
 												<div class="form-group">
-													<label class="col-lg-3 control-label">وصف الموقع :</label>
+													<label class="col-lg-3 control-label">عن التطبيق :</label>
 													<div class="col-lg-9">
-														<textarea rows="5" cols="5" name="site_description" class="form-control" placeholder="وصف الموقع">{{$SiteSetting->site_description}}</textarea>
+														<textarea rows="5" cols="5" name="site_description" class="form-control" placeholder="عن التطبيق">{{$SiteSetting->site_description}}</textarea>
 													</div>
 												</div>
 
 												<div class="form-group">
-													<label class="col-lg-3 control-label">الكلمات الدلاليه :</label>
+													<label class="col-lg-3 control-label"> الرسالة :</label>
 													<div class="col-lg-9">
-														<textarea rows="5" cols="5" name="site_tagged" class="form-control" placeholder="الكلمات الآفتتاحيه">{{$SiteSetting->site_tagged}}</textarea>
+														<textarea rows="5" cols="5" name="site_tagged" class="form-control" placeholder=" الرسالة ">{{$SiteSetting->site_tagged}}</textarea>
 													</div>
 												</div>
 
 												<div class="form-group">
-													<label class="col-lg-3 control-label">حقوق الشركه :</label>
+													<label class="col-lg-3 control-label"> الرؤية :</label>
 													<div class="col-lg-9">
-														<textarea rows="5" cols="5" name="site_copyrigth" class="form-control" placeholder="حقوق الشركه">{{$SiteSetting->site_copyrigth}}</textarea>
+														<textarea rows="5" cols="5" name="site_copyrigth" class="form-control" placeholder=" الرؤية">{{$SiteSetting->site_copyrigth}}</textarea>
 													</div>
 												</div>
 
@@ -161,7 +175,7 @@
 												<tbody>
 													@foreach($socials as $social)
 														<tr>
-															<td><img src="{{asset('dashboard/uploads/socialicon/'.$social->logo)}}" style="width:40px;height: 40px" class="img-circle" alt=""></td>
+															<td><img src="{{asset('public/dashboard/uploads/socialicon/'.$social->logo)}}" style="width:40px;height: 40px" class="img-circle" alt=""></td>
 															<td>{{$social->name}}</td>
 															<td>{{str_limit($social->link,30)}}</td>
 															<td>{{$social->created_at->diffForHumans()}}</td>

@@ -6,7 +6,7 @@
             <div class="category-content">
                 @if(Auth::check())
                 <div class="media">
-                    <a href="#" class="media-left"><img src="{{asset('dashboard/uploads/users/'.Auth::user()->photo)}}" class="img-circle img-sm" alt=""></a>
+                    <a href="#" class="media-left"><img src="{{asset('public/dashboard/uploads/users/'.Auth::user()->photo)}}" class="img-circle img-sm" alt=""></a>
                     <div class="media-body">
                         <span class="media-heading text-semibold">{{Auth::user()->name}}</span>
                         <div class="text-size-mini text-muted">

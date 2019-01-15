@@ -18,6 +18,10 @@
 	<link href="{{asset('dashboard/css/extras/animate.min.css')}}" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" type="text/css" href="{{asset('dashboard/checkbox-radio-master/dist/css/checkbox_radio_img_sprite.css')}}">
 
+
+
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css">
+
 	@yield('style')
 	<!-- /global stylesheets -->
 
@@ -28,6 +32,11 @@
 	<script src="{{asset('dashboard/js/plugins/loaders/blockui.min.js')}}"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.5/sweetalert2.all.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
+
+
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/locales/bootstrap-datepicker.ar.min.js"></script>
 
 	<!-- /core JS files -->
 
@@ -71,14 +80,14 @@
 				                <li><a href="{{route('dashboard')}}"><i class="icon-home2 position-left"></i> الرئيسيه / </a> {{currentRoute()}}</li>
 				            </ul>
 
-				            <ul class="breadcrumb-elements">
-				                <li class="dropdown">
-				                    <a href="{{route('setting')}}" >
-				                        <i class="icon-gear position-left"></i>
-				                        الاعدادات
-				                    </a>
-				                </li>
-				            </ul>
+								{{--<ul class="breadcrumb-elements">--}}
+									{{--<li class="dropdown">--}}
+										{{--<a href="{{route('setting')}}" >--}}
+											{{--<i class="icon-gear position-left"></i>--}}
+											{{--الاعدادات--}}
+										{{--</a>--}}
+									{{--</li>--}}
+								{{--</ul>--}}
 
 				        </div>
 				    </div>
